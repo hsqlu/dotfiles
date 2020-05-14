@@ -14,6 +14,9 @@ Plugin 'preservim/nerdtree'
 Plugin 'preservim/nerdcommenter'
 
 Plugin 'Valloric/YouCompleteMe'        " YCM auto completion
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'majutsushi/tagbar'
+
 Plugin 'fatih/vim-go'                  " go plugin
 Plugin 'racer-rust/vim-racer'          " 插件列表1
 Plugin 'rust-lang/rust.vim'            " 插件列表1
@@ -65,6 +68,54 @@ set matchpairs+=<:>                                               " specially fo
 " set termguicolors
 " set background=dark
 colorscheme nord
+
+"""""""""""""""""""""""""""""""""""""""""""""""
+" Tagbar
+
+" see: https://github.com/majutsushi/tagbar/issues/365
+let g:Tlist_Ctags_Cmd='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
+"""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""
+" ctrlp
+
+" Change the default mapping and the default command to invoke CtrlP:
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+" When invoked without an explicit starting directory, CtrlP will set its local working directory according to this variable:
+let g:ctrlp_working_path_mode = 'ra'
+
+" 'c' - the directory of the current file.
+" 'a' - the directory of the current file, unless it is a subdirectory of the cwd
+" 'r' - the nearest ancestor of the current file that contains one of these directories or files: .git .hg .svn .bzr _darcs
+" 'w' - modifier to "r": start search from the cwd instead of the current file's directory
+" 0 or '' (empty string) - disable this feature.
+
+" If a file is already open, open it again in a new pane instead of switching to the existing pane
+let g:ctrlp_switch_buffer = 'et'
+
+
+" Exclude files and directories using Vim's wildignore and CtrlP's own g:ctrlp_custom_ignore. If a custom listing command is being used, exclusions are ignored:
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+" set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+" let g:ctrlp_custom_ignore = {
+"   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+"   \ 'file': '\v\.(exe|so|dll)$',
+"   \ 'link': 'some_bad_symbolic_links',
+  " \ }
+
+
+" Use a custom file listing command:
+let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+" let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+
+" Ignore files in .gitignore
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
+"""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""
 " go-vim
