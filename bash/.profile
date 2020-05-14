@@ -29,7 +29,7 @@ fi
 # To resolve VIM error: `Warning: Failed to set locale category LC_MONETARY to en_CN.`
 export LC_ALL=en_US.UTF-8
 
-if["$(uname)"=="Darwin"];then
+if [ "$(uname)" = "Darwin" ];then
 
     # protoc java code generation plugin. build from source: $repositories/grpc-java/compiler
     export PROTOC_PLUGIN_JAVA="$HOME/repositories/grpc-java/compiler/build/exe/java_plugin/protoc-gen-grpc-java"
