@@ -47,6 +47,7 @@ set expandtab       " expand tab to space
 
 " editor settings
 set history=1000
+set hlsearch                                                      " highlight search result
 set nocompatible
 set nofoldenable                                                  " disable folding"
 set confirm                                                       " prompt when existing from an unsaved file
@@ -74,6 +75,8 @@ colorscheme nord
 
 " see: https://github.com/majutsushi/tagbar/issues/365
 let g:Tlist_Ctags_Cmd='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
+
+nmap <F8> :TagbarToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""
@@ -150,8 +153,11 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
 " let NERDTreeIgnore = ['\.pyc$']       " 过滤所有.pyc文件不显示
-" let g:NERDTreeShowLineNumbers=1       " 是否显示行号
-" let g:NERDTreeHidden=0                " 不显示隐藏文件
+let g:NERDTreeShowLineNumbers=1       " 是否显示行号
+let g:NERDTreeHidden=1                " 不显示隐藏文件
+
+" 显示当前文件所做路径
+nn <silent><F2> :exec("NERDTree ".expand('%:h'))<CR>
 
 " Making it prettier
 " let NERDTreeMinimalUI = 1
