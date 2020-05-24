@@ -1,3 +1,4 @@
+"""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
 filetype off                  " required set rtp+=~/.vim/bundle/Vundle.vim call vundle#begin() 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -6,8 +7,14 @@ call vundle#begin()
 " 插件列表开始
 Plugin 'VundleVim/Vundle.vim'         
 
-Plugin 'arcticicestudio/nord-vim'
+" Plugin 'arcticicestudio/nord-vim'
+" Plugin 'altercation/vim-colors-solarized'
+Plugin 'lifepillar/vim-solarized8'
+" Plugin 'dracula/vim', { 'name': 'dracula' }
+" Plugin 'connorholyday/vim-snazzy'
+" Plugin 'ayu-theme/ayu-vim'
 Plugin 'vim-airline/vim-airline'
+" Plugin 'vim-airline/vim-airline-themes'
 
 " NERTTree & Commenter
 Plugin 'preservim/nerdtree'
@@ -23,7 +30,7 @@ Plugin 'rust-lang/rust.vim'            " 插件列表1
 
 call vundle#end()            " required
 filetype plugin indent on    " required
-
+"""""""""""""""""""""""""""""""""""""""""""""""
 
 " 开启rust的自动reformat的功能
 let g:rustfmt_autosave = 1
@@ -53,7 +60,7 @@ set nofoldenable                                                  " disable fold
 set confirm                                                       " prompt when existing from an unsaved file
 set backspace=indent,eol,start                                    " More powerful backspacing
 set t_Co=256                                                      " Explicitly tell vim that the terminal has 256 colors "
-set mouse=a                                                       " use mouse in all modes
+set mouse-=a                                                      " use mouse in all modes
 set report=0                                                      " always report number of lines changed                "
 set scrolloff=5                                                   " 5 lines above/below cursor when scrolling
 set number                                                        " show line numbers
@@ -64,11 +71,24 @@ set laststatus=2                                                  " use 2 lines 
 set matchtime=2                                                   " show matching bracket for 0.2 seconds
 set matchpairs+=<:>                                               " specially for html
 " set relativenumber
+set clipboard=unnamed                                             " copy vim clipboard to system's clipboard
+set pastetoggle=<F9>                                              " enable/disable paste auto indent
 
 " colorscheme settings
 " set termguicolors
-" set background=dark
-colorscheme nord
+" let g:solarized_termcolors=256
+ set background=dark
+" let g:airline_theme='solarized'
+" let g:airline_solarized_bg='dark'
+" set termguicolors
+" let ayucolor='light'
+" let ayucolor='mirage'
+" let ayucolor='dark'
+" colorscheme ayu
+" colorscheme dracula
+" colorscheme solarized
+colorscheme solarized8
+" colorscheme nord
 
 """""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar
@@ -154,13 +174,14 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 
 " let NERDTreeIgnore = ['\.pyc$']       " 过滤所有.pyc文件不显示
 let g:NERDTreeShowLineNumbers=1       " 是否显示行号
-let g:NERDTreeHidden=1                " 不显示隐藏文件
+" let g:NERDTreeHidden=1                " 不显示隐藏文件
 
 " 显示当前文件所做路径
 nn <silent><F2> :exec("NERDTree ".expand('%:h'))<CR>
 
 " Making it prettier
-" let NERDTreeMinimalUI = 1
+" 不显示项目树上额外的信息，例如帮助、提示什么的
+let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 " NERDTree configuration end
 """""""""""""""""""""""""""""""""""""""""""""""
