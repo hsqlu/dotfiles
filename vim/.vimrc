@@ -77,7 +77,7 @@ set pastetoggle=<F9>                                              " enable/disab
 " colorscheme settings
 " set termguicolors
 " let g:solarized_termcolors=256
- set background=dark
+ set background=light
 " let g:airline_theme='solarized'
 " let g:airline_solarized_bg='dark'
 " set termguicolors

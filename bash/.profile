@@ -30,12 +30,19 @@ fi
 export LC_ALL=en_US.UTF-8
 
 if [ "$(uname)" = "Darwin" ];then
+    # Add VS Code command 
+    export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+
+    # Add istio path
+    export PATH="$HOME/workspace/istio-1.7.3/bin:$PATH"
 
     # protoc java code generation plugin. build from source: $repositories/grpc-java/compiler
     export PROTOC_PLUGIN_JAVA="$HOME/repositories/grpc-java/compiler/build/exe/java_plugin/protoc-gen-grpc-java"
 
     export RUST_SRC_PATH=${HOME}/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src
     export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+    export PATH="$HOME/.jenv/bin:$PATH"
+    eval "$(jenv init -)"
 fi
 
 export PATH="/usr/local/go/bin:$PATH"
