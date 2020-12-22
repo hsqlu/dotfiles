@@ -1,14 +1,13 @@
-# dotfiles
-Personal configuration
+# dotfiles - Personal configuration
 
 Using [GNU stow](https://www.gnu.org/software/stow/) to manage the development environment configuration.
 
-1. bash
+## bash
 
-2. zsh
+## zsh
 
-3. vim
+## vim
 
-4. tmux
+## tmux
 
-5. git
+## git
