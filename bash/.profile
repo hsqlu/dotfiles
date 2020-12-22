@@ -33,6 +33,7 @@ if [ "$(uname)" = "Darwin" ];then
     # Add VS Code command 
     export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
 
+    export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
     # Add istio path
     export PATH="$HOME/workspace/istio-1.7.3/bin:$PATH"
 
