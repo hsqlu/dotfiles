@@ -1,41 +1,82 @@
 """""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible              " be iMproved, required
-filetype off                  " required set rtp+=~/.vim/bundle/Vundle.vim call vundle#begin() 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin()
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+" You can specify a custom plugin directory by passing it as the argument
+"   - e.g. `call plug#begin('~/.vim/plugged')`
+"   - Avoid using standard Vim directory names like 'plugin'
 
+" Make sure you use single quotes
+
+" NERTTree & Commenter
+Plug 'preservim/nerdtree'
+Plug 'preservim/nerdcommenter'
+
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'majutsushi/tagbar'
+
+Plug 'fatih/vim-go'                  " go plugin
+Plug 'racer-rust/vim-racer'          " 插件列表1
+Plug 'rust-lang/rust.vim'            " 插件列表1
+
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+Plug 'junegunn/vim-easy-align'
+
+" Any valid git URL is allowed
+" Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+
+" Multiple Plug commands can be written in a single line using | separators
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+" On-demand loading
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+
+" Using a non-default branch
+" Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+
+" Plugin options
+" Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+
+" Plugin outside ~/.vim/plugged with post-update hook
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" Initialize plugin system
+call plug#end()
+
+set nocompatible              " be iMproved, required
+filetype plugin on            " Required by NERDCommenter
+
+" 弃用的插件管理和列表
 " 插件列表开始
-Plugin 'VundleVim/Vundle.vim'         
 
 " Plugin 'arcticicestudio/nord-vim'
 " Plugin 'altercation/vim-colors-solarized'
-Plugin 'lifepillar/vim-solarized8'
+" Plugin 'lifepillar/vim-solarized8'
 " Plugin 'dracula/vim', { 'name': 'dracula' }
 " Plugin 'connorholyday/vim-snazzy'
 " Plugin 'ayu-theme/ayu-vim'
-Plugin 'vim-airline/vim-airline'
+" Plugin 'vim-airline/vim-airline'
 " Plugin 'vim-airline/vim-airline-themes'
 
 " NERTTree & Commenter
-Plugin 'preservim/nerdtree'
-Plugin 'preservim/nerdcommenter'
+" Plugin 'preservim/nerdtree'
+" Plugin 'preservim/nerdcommenter'
 
-Plugin 'Valloric/YouCompleteMe'        " YCM auto completion
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'majutsushi/tagbar'
+" Plugin 'Valloric/YouCompleteMe'        " YCM auto completion
 
-Plugin 'fatih/vim-go'                  " go plugin
-Plugin 'racer-rust/vim-racer'          " 插件列表1
-Plugin 'rust-lang/rust.vim'            " 插件列表1
+" Plugin 'fatih/vim-go'                  " go plugin
+" Plugin 'racer-rust/vim-racer'          " 插件列表1
+" Plugin 'rust-lang/rust.vim'            " 插件列表1
 
-call vundle#end()            " required
-filetype plugin indent on    " required
 """""""""""""""""""""""""""""""""""""""""""""""
 
 " 开启rust的自动reformat的功能
 let g:rustfmt_autosave = 1
 set hidden
-let g:racer_cmd = "/Users/qiannan/.cargo/bin/racer"
+let g:racer_cmd = "$HOME/.cargo/bin/racer"
 let $RUST_SRC_PATH=$RUST_SRC_PATH
 let g:ycm_rust_src_path = $RUST_SRC_PATH
 
@@ -87,14 +128,15 @@ set pastetoggle=<F9>                                              " enable/disab
 " colorscheme ayu
 " colorscheme dracula
 " colorscheme solarized
-colorscheme solarized8
+
+" colorscheme solarized8
 " colorscheme nord
 
 """""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar
 
 " see: https://github.com/majutsushi/tagbar/issues/365
-let g:Tlist_Ctags_Cmd='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
+let g:Tlist_Ctags_Cmd='/usr/bin/ctags'
 
 nmap <F8> :TagbarToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""
@@ -141,13 +183,26 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 """""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""
-" go-vim
+" go-vim configruation
 let g:go_fmt_command = "goimports"
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+" Key mapping -- Go
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+
+au FileType go nmap <C-]> <Plug>(go-def)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 """""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""
@@ -196,18 +251,6 @@ nnoremap <c-l> <c-w>l
 """""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""
-" Key mapping -- Go
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-
-au FileType go nmap <C-]> <Plug>(go-def)
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
 " Key mapping -- Rust
 au FileType rust nmap gd <Plug>(rust-def)
@@ -253,3 +296,4 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 " NERD Commenter configuration end
 """""""""""""""""""""""""""""""""""""""""""""""
+
