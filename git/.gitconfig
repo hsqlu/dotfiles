@@ -3,7 +3,7 @@
 	email = qiannan.lyu@hotmail.com
 [core]
 	editor = vim
-	excludesfile = /home/qiannanlyu/.gitignore_global
+	excludesfile = $HOME/.gitignore_global
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
